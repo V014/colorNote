@@ -1,0 +1,16 @@
+c:\users\wanga\documents\visual studio 2015\Projects\colorNote\colorNote\bin\Debug\colorNote.exe.config
+c:\users\wanga\documents\visual studio 2015\Projects\colorNote\colorNote\bin\Debug\colorNote.exe
+c:\users\wanga\documents\visual studio 2015\Projects\colorNote\colorNote\bin\Debug\colorNote.pdb
+c:\users\wanga\documents\visual studio 2015\Projects\colorNote\colorNote\obj\Debug\colorNote.csprojResolveAssemblyReference.cache
+c:\users\wanga\documents\visual studio 2015\Projects\colorNote\colorNote\obj\Debug\colorNote.Properties.Resources.resources
+c:\users\wanga\documents\visual studio 2015\Projects\colorNote\colorNote\obj\Debug\colorNote.csproj.GenerateResource.Cache
+c:\users\wanga\documents\visual studio 2015\Projects\colorNote\colorNote\obj\Debug\colorNote.exe
+c:\users\wanga\documents\visual studio 2015\Projects\colorNote\colorNote\obj\Debug\colorNote.pdb
+C:\Users\Wanga\Documents\Visual Studio 2015\Projects\colorNote\colorNote\obj\Debug\colorNote.Home.resources
+C:\Users\Wanga\Documents\Visual Studio 2015\Projects\colorNote\colorNote\bin\Debug\System.Data.SQLite.dll
+C:\Users\Wanga\Documents\Visual Studio 2015\Projects\colorNote\colorNote\bin\Debug\System.Data.SQLite.xml
+C:\Users\Wanga\Documents\Visual Studio 2015\Projects\colorNote\colorNote\bin\Debug\Bunifu.UI.WinForms.BunifuDatePicker.dll
+C:\Users\Wanga\Documents\Visual Studio 2015\Projects\colorNote\colorNote\bin\Debug\Bunifu.UI.WinForms.BunifuDatePicker.xml
+C:\Users\Wanga\Documents\Visual Studio 2015\Projects\colorNote\colorNote\obj\Debug\colorNote.exe.licenses
+C:\Users\Wanga\Documents\Visual Studio 2015\Projects\colorNote\colorNote\bin\Debug\Bunifu.UI.WinForms.BunifuButton.dll
+C:\Users\Wanga\Documents\Visual Studio 2015\Projects\colorNote\colorNote\bin\Debug\Bunifu.UI.WinForms.BunifuButton.xml
