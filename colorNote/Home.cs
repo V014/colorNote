@@ -1,33 +1,57 @@
 ﻿using System.Windows.Forms;
-using MaterialSkin;
-using MaterialSkin.Controls;
 using System;
 using System.Drawing;
+using System.Globalization;
 
 namespace colorNote
 {
-    public partial class Home : MaterialForm
+    public partial class Home : MetroFramework.Forms.MetroForm
     {
         // check current date and time
         private string currentDate = DateTime.Today.ToString("d");
-        private readonly MaterialSkinManager materialSkinManager;
+        int month, year;
+        //private readonly MaterialSkinManager materialSkinManager;
         public Home()
         {
             InitializeComponent();
-            // Initialize MaterialSkinManager
-            materialSkinManager = MaterialSkinManager.Instance;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
-            // update session time
             updateDate();
+        }
+        private void Home_Load(object sender, EventArgs e)
+        {
+            displayDays();
             // check current mood
-            if(checkMood() != "")
+            if (checkMood() != "")
             {
                 lbl_mood.Text = checkMood();
-                setTheme(checkMood());
+                //setTheme(checkMood());
             }
-            
+        }
+        private void displayDays()
+        {
+            DateTime now = DateTime.Now;
+            month = now.Month;
+            year = now.Year;
+            string monthname = DateTimeFormatInfo.CurrentInfo.GetMonthName(month);
+            label_month_year.Text = monthname + " " + year;
+            // get first day of the month
+            DateTime startofthemonth = new DateTime(year, month, 1);
+            // get the count of days of the month
+            int days = DateTime.DaysInMonth(year, month);
+            // covert the start of the month to integer
+            int daysoftheweek = Convert.ToInt32(startofthemonth.DayOfWeek.ToString("d")) + 1;
+            // applies bank days to calendar
+            for (int i = 1; i < daysoftheweek; i++)
+            {
+                Blanks blanks = new Blanks();
+                panel_day.Controls.Add(blanks);
+            }
+            // applies days to calendar
+            for(int i = 1; i <= days; i++)
+            {
+                Days day = new Days();
+                day.days(i);
+                panel_day.Controls.Add(day);
+            }
         }
         // updates the session and returns nothing
         void updateDate()
@@ -42,49 +66,6 @@ namespace colorNote
             string cmd = "SELECT Mood FROM Records WHERE date = '" + currentDate + "'";
             string mood = Connection.ReadString(cmd);
             return mood;
-        }
-        // sets the theme of the ui
-        private void setTheme(string mood)
-        {
-            switch (mood)
-            {
-                case "Very Bad":
-                    materialSkinManager.ColorScheme = new ColorScheme(Primary.Red800, Primary.Red900, Primary.Red500, Accent.Red200, TextShade.WHITE);
-                    lbl_note.ForeColor = Color.White;
-                    lbl_mood.ForeColor = Color.FromArgb(198, 40, 40);
-                    lbl_mood.Text = "Very Bad";
-                    break;
-                case "Bad":
-                    materialSkinManager.ColorScheme = new ColorScheme(Primary.Orange800, Primary.Orange900, Primary.Orange500, Accent.Orange200, TextShade.BLACK);
-                    lbl_note.ForeColor = Color.FromArgb(37, 37, 39);
-                    lbl_mood.ForeColor = Color.FromArgb(239, 108, 0);
-                    lbl_mood.Text = "Bad";
-                    break;
-                case "Ok":
-                    materialSkinManager.ColorScheme = new ColorScheme(Primary.Yellow800, Primary.Yellow900, Primary.Yellow500, Accent.Yellow200, TextShade.BLACK);
-                    lbl_note.ForeColor = Color.FromArgb(37, 37, 39);
-                    lbl_mood.ForeColor = Color.FromArgb(249, 168, 37);
-                    lbl_mood.Text = "Ok";
-                    break;
-                case "Good":
-                    materialSkinManager.ColorScheme = new ColorScheme(Primary.Green800, Primary.Green900, Primary.Green500, Accent.Green200, TextShade.WHITE);
-                    lbl_note.ForeColor = Color.White;
-                    lbl_mood.ForeColor = Color.FromArgb(46, 125, 50);
-                    lbl_mood.Text = "Good";
-                    break;
-                case "Very Good":
-                    materialSkinManager.ColorScheme = new ColorScheme(Primary.Blue800, Primary.Blue900, Primary.Blue500, Accent.Blue200, TextShade.WHITE);
-                    lbl_note.ForeColor = Color.White;
-                    lbl_mood.ForeColor = Color.FromArgb(21, 101, 192);
-                    lbl_mood.Text = "Very Good";
-                    break;
-                default:
-                    materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
-                    lbl_note.ForeColor = Color.White;
-                    lbl_mood.ForeColor = Color.FromArgb(55, 71, 79);
-                    lbl_mood.Text = "Default";
-                    break;
-            }
         }
         // takes in the mood and date to record
         private void record(string mood, string selectedDate)
@@ -114,38 +95,38 @@ namespace colorNote
         private void redBtn_Click(object sender, System.EventArgs e)
         {
             record("Very Bad", datePicker.Text);
-            setTheme("Very Bad");
+            //setTheme("Very Bad");
         }
 
         private void orangeBtn_Click(object sender, System.EventArgs e)
         {
             record("Bad", datePicker.Text);
-            setTheme("Bad");
+            //setTheme("Bad");
         }
 
         private void yellowBtn_Click(object sender, System.EventArgs e)
         {
             record("Ok", datePicker.Text);
-            setTheme("Ok");
+            //setTheme("Ok");
         }
 
         private void greenBtn_Click(object sender, System.EventArgs e)
         {
             record("Good", datePicker.Text);
-            setTheme("Good");
+            //setTheme("Good");
         }
 
         private void blueBtn_Click(object sender, System.EventArgs e)
         {
             record("Very Good", datePicker.Text);
-            setTheme("Very Good");
+            //setTheme("Very Good");
         }
 
         private void default_btn_Click(object sender, EventArgs e)
         {
 
             record("Default", currentDate);
-            setTheme("Default");
+            //setTheme("Default");
         }
         // pulls data from that specific date
         private void datePicker_ValueChanged(object sender, EventArgs e)
@@ -154,14 +135,70 @@ namespace colorNote
             string mood = Connection.ReadString(cmd);
             if(mood == "")
             {
-                setTheme("Default");
+                //setTheme("Default");
             }
             else
             {
-                setTheme(mood);
+                //setTheme(mood);
                 record(mood, datePicker.Text);
             }
-            
+        }
+
+        private void button_back_Click(object sender, EventArgs e)
+        {
+            panel_day.Controls.Clear();
+            // decrement month to go to previous month
+            month--;
+            // display the month and year
+            string monthname = DateTimeFormatInfo.CurrentInfo.GetMonthName(month);
+            label_month_year.Text = monthname + " " + year;
+            // get first day of the month
+            DateTime startofthemonth = new DateTime(year, month, 1);
+            // get the count of days of the month
+            int days = DateTime.DaysInMonth(year, month);
+            // covert the start of the month to integer
+            int daysoftheweek = Convert.ToInt32(startofthemonth.DayOfWeek.ToString("d")) + 1;
+            // applies bank days to calendar
+            for (int i = 1; i < daysoftheweek; i++)
+            {
+                Blanks blanks = new Blanks();
+                panel_day.Controls.Add(blanks);
+            }
+            // applies days to calendar
+            for (int i = 1; i <= days; i++)
+            {
+                Days day = new Days();
+                day.days(i);
+                panel_day.Controls.Add(day);
+            }
+        }
+
+        private void button_next_Click(object sender, EventArgs e)
+        {
+            panel_day.Controls.Clear();
+            month++;
+            // display the month and year
+            string monthname = DateTimeFormatInfo.CurrentInfo.GetMonthName(month);
+            label_month_year.Text = monthname + " " + year;
+            // get first day of the month
+            DateTime startofthemonth = new DateTime(year, month, 1);
+            // get the count of days of the month
+            int days = DateTime.DaysInMonth(year, month);
+            // covert the start of the month to integer
+            int daysoftheweek = Convert.ToInt32(startofthemonth.DayOfWeek.ToString("d")) + 1;
+            // applies bank days to calendar
+            for (int i = 1; i < daysoftheweek; i++)
+            {
+                Blanks blanks = new Blanks();
+                panel_day.Controls.Add(blanks);
+            }
+            // applies days to calendar
+            for (int i = 1; i <= days; i++)
+            {
+                Days day = new Days();
+                day.days(i);
+                panel_day.Controls.Add(day);
+            }
         }
     }
 }

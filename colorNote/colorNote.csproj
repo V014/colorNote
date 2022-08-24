@@ -34,15 +34,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bunifu.Licensing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=f89b4760ba7dcb6b" />
-    <Reference Include="Bunifu.UI.WinForms.BunifuButton">
-      <HintPath>..\..\..\packages\Bunifu\5.0.3\Bunifu.UI.WinForms.BunifuButton.dll</HintPath>
-    </Reference>
     <Reference Include="Bunifu.UI.WinForms.BunifuDatePicker">
       <HintPath>..\..\..\packages\Bunifu\5.0.3\Bunifu.UI.WinForms.BunifuDatePicker.dll</HintPath>
     </Reference>
-    <Reference Include="MaterialSkin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\MaterialSkin.dll</HintPath>
+    <Reference Include="MetroFramework">
+      <HintPath>..\Packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Design">
+      <HintPath>..\Packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Fonts">
+      <HintPath>..\Packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Fonts.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -63,6 +65,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Connection.cs" />
+    <Compile Include="Blanks.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Blanks.Designer.cs">
+      <DependentUpon>Blanks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Days.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Days.Designer.cs">
+      <DependentUpon>Days.cs</DependentUpon>
+    </Compile>
     <Compile Include="Home.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +85,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Blanks.resx">
+      <DependentUpon>Blanks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Days.resx">
+      <DependentUpon>Days.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
@@ -99,7 +119,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="img\redLights.jpg" />
+    <Folder Include="img\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
