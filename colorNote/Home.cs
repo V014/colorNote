@@ -16,23 +16,74 @@ namespace colorNote
             InitializeComponent();
             updateDate();
         }
+        // what happens when the application loads
         private void Home_Load(object sender, EventArgs e)
         {
             displayDays();
             // check current mood
             if (checkMood() != "")
             {
-                lbl_mood.Text = checkMood();
-                //setTheme(checkMood());
+                // set the style according to the mood
+                setStyle(checkMood());
             }
         }
+        // sets the style of the application according to the mood
+        private void setStyle(string mood)
+        {
+            switch (mood)
+            {
+                case "Very Bad":
+                    this.Style = MetroFramework.MetroColorStyle.Red;
+                    datePicker.Style = MetroFramework.MetroColorStyle.Red;
+                    lbl_monthYear.ForeColor = Color.Crimson;
+                    lbl_mood.ForeColor = Color.FromArgb(198, 40, 40);
+                    lbl_mood.Text = "Very Bad";
+                    break;
+                case "Bad":
+                    this.Style = MetroFramework.MetroColorStyle.Orange;
+                    datePicker.Style = MetroFramework.MetroColorStyle.Orange;
+                    lbl_monthYear.ForeColor = Color.FromArgb(239, 108, 0);
+                    lbl_mood.ForeColor = Color.FromArgb(239, 108, 0);
+                    lbl_mood.Text = "Bad";
+                    break;
+                case "Ok":
+                    this.Style = MetroFramework.MetroColorStyle.Yellow;
+                    datePicker.Style = MetroFramework.MetroColorStyle.Yellow;
+                    lbl_monthYear.ForeColor = Color.FromArgb(249, 168, 37);
+                    lbl_mood.ForeColor = Color.FromArgb(249, 168, 37);
+                    lbl_mood.Text = "Ok";
+                    break;
+                case "Good":
+                    this.Style = MetroFramework.MetroColorStyle.Green;
+                    datePicker.Style = MetroFramework.MetroColorStyle.Green;
+                    lbl_monthYear.ForeColor = Color.MediumSeaGreen;
+                    lbl_mood.ForeColor = Color.FromArgb(46, 125, 50);
+                    lbl_mood.Text = "Good";
+                    break;
+                case "Very Good":
+                    this.Style = MetroFramework.MetroColorStyle.Blue;
+                    datePicker.Style = MetroFramework.MetroColorStyle.Blue;
+                    lbl_monthYear.ForeColor = Color.FromArgb(21, 101, 192);
+                    lbl_mood.ForeColor = Color.FromArgb(21, 101, 192);
+                    lbl_mood.Text = "Very Good";
+                    break;
+                default:
+                    this.Style = MetroFramework.MetroColorStyle.Silver;
+                    datePicker.Style = MetroFramework.MetroColorStyle.Silver;
+                    lbl_monthYear.ForeColor = Color.White;
+                    lbl_mood.ForeColor = Color.FromArgb(55, 71, 79);
+                    lbl_mood.Text = "Default";
+                    break;
+            }
+        }
+        // displays the days according to the calendar
         private void displayDays()
         {
             DateTime now = DateTime.Now;
             month = now.Month;
             year = now.Year;
             string monthname = DateTimeFormatInfo.CurrentInfo.GetMonthName(month);
-            label_month_year.Text = monthname + " " + year;
+            lbl_monthYear.Text = monthname + " " + year;
             // get first day of the month
             DateTime startofthemonth = new DateTime(year, month, 1);
             // get the count of days of the month
@@ -57,13 +108,13 @@ namespace colorNote
         void updateDate()
         {
             // update date
-            string cmd = "UPDATE Session SET Date = '" + currentDate + "' WHERE id = 1";
+            string cmd = $"UPDATE Session SET Date = '{currentDate}' WHERE id = 1";
             Connection.ExecuteQuery(cmd);
         }
         // pull the mood of the day
         private string checkMood()
         {
-            string cmd = "SELECT Mood FROM Records WHERE date = '" + currentDate + "'";
+            string cmd = $"SELECT Mood FROM Records WHERE date = '{currentDate}'";
             string mood = Connection.ReadString(cmd);
             return mood;
         }
@@ -71,20 +122,21 @@ namespace colorNote
         private void record(string mood, string selectedDate)
         {
             // check to see if the user has already recorded.
-            string checkSession = "SELECT Mood FROM Records WHERE date = '" + selectedDate + "'";
+            string checkSession = $"SELECT Mood FROM Records WHERE date = '{selectedDate}'";
             string session = Connection.ReadString(checkSession);
             try
             {
                 if (session != "")
                 {
-                    string cmd = "UPDATE Records SET Mood = '" + mood + "' WHERE date = '" + selectedDate + "'";
+                    string cmd = $"UPDATE Records SET Mood = '{mood}' WHERE date = '{selectedDate}'";
                     Connection.ExecuteQuery(cmd);
                 }
                 else
                 {
-                    string cmd = "INSERT INTO Records(Date, Mood) VALUES('" + selectedDate + "', '" + mood + "')";
+                    string cmd = $"INSERT INTO Records(Date, Mood) VALUES('{selectedDate}', '{mood}')";
                     Connection.ExecuteQuery(cmd);
                 }
+                lbl_mood.Text = mood;
             }
             catch (Exception)
             {
@@ -94,53 +146,67 @@ namespace colorNote
         // reactions to user clicks
         private void redBtn_Click(object sender, System.EventArgs e)
         {
+            this.Style = MetroFramework.MetroColorStyle.Red;
+            datePicker.Style = MetroFramework.MetroColorStyle.Red;
             record("Very Bad", datePicker.Text);
-            //setTheme("Very Bad");
+            lbl_mood.ForeColor = Color.Crimson;
+            lbl_monthYear.ForeColor = Color.Crimson;
+            this.Refresh();
         }
-
         private void orangeBtn_Click(object sender, System.EventArgs e)
         {
+            this.Style = MetroFramework.MetroColorStyle.Orange;
+            datePicker.Style = MetroFramework.MetroColorStyle.Orange;
             record("Bad", datePicker.Text);
-            //setTheme("Bad");
+            lbl_mood.ForeColor = Color.FromArgb(239, 108, 0);
+            lbl_monthYear.ForeColor = Color.FromArgb(239, 108, 0);
+            this.Refresh();
         }
-
         private void yellowBtn_Click(object sender, System.EventArgs e)
         {
+            this.Style = MetroFramework.MetroColorStyle.Yellow;
+            datePicker.Style = MetroFramework.MetroColorStyle.Yellow;
             record("Ok", datePicker.Text);
-            //setTheme("Ok");
+            lbl_mood.ForeColor = Color.Yellow;
+            lbl_monthYear.ForeColor = Color.Yellow;
+            this.Refresh();
         }
-
         private void greenBtn_Click(object sender, System.EventArgs e)
         {
+            this.Style = MetroFramework.MetroColorStyle.Green;
+            datePicker.Style = MetroFramework.MetroColorStyle.Green;
             record("Good", datePicker.Text);
-            //setTheme("Good");
+            lbl_mood.ForeColor = Color.MediumSeaGreen;
+            lbl_monthYear.ForeColor = Color.MediumSeaGreen;
+            this.Refresh();
         }
-
         private void blueBtn_Click(object sender, System.EventArgs e)
         {
+            this.Style = MetroFramework.MetroColorStyle.Blue;
             record("Very Good", datePicker.Text);
-            //setTheme("Very Good");
+            lbl_mood.ForeColor = Color.FromArgb(0, 174, 219);
+            lbl_monthYear.ForeColor = Color.FromArgb(0, 174, 219);
+            this.Refresh();
         }
-
         private void default_btn_Click(object sender, EventArgs e)
         {
-
+            this.Style = MetroFramework.MetroColorStyle.Silver;
+            datePicker.Style = MetroFramework.MetroColorStyle.Silver;
             record("Default", currentDate);
-            //setTheme("Default");
+            lbl_mood.ForeColor = Color.Silver;
+            lbl_monthYear.ForeColor = Color.Silver;
+            this.Refresh();
         }
         // pulls data from that specific date
         private void datePicker_ValueChanged(object sender, EventArgs e)
         {
-            string cmd = "SELECT Mood FROM Records WHERE Date = '" + datePicker.Text + "'";
+            MessageBox.Show(datePicker.Text);
+            string cmd = $"SELECT Mood FROM Records WHERE Date = '{datePicker.Text}'";
             string mood = Connection.ReadString(cmd);
             if(mood == "")
             {
-                //setTheme("Default");
-            }
-            else
-            {
-                //setTheme(mood);
-                record(mood, datePicker.Text);
+                // set the style according to the mood
+                setStyle(mood);
             }
         }
 
@@ -151,7 +217,7 @@ namespace colorNote
             month--;
             // display the month and year
             string monthname = DateTimeFormatInfo.CurrentInfo.GetMonthName(month);
-            label_month_year.Text = monthname + " " + year;
+            lbl_monthYear.Text = monthname + " " + year;
             // get first day of the month
             DateTime startofthemonth = new DateTime(year, month, 1);
             // get the count of days of the month
@@ -179,7 +245,7 @@ namespace colorNote
             month++;
             // display the month and year
             string monthname = DateTimeFormatInfo.CurrentInfo.GetMonthName(month);
-            label_month_year.Text = monthname + " " + year;
+            lbl_monthYear.Text = monthname + " " + year;
             // get first day of the month
             DateTime startofthemonth = new DateTime(year, month, 1);
             // get the count of days of the month

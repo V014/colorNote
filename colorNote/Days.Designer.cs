@@ -34,6 +34,7 @@
             // 
             // panel_color
             // 
+            this.panel_color.BackColor = System.Drawing.Color.Transparent;
             this.panel_color.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel_color.Location = new System.Drawing.Point(0, 40);
             this.panel_color.Name = "panel_color";
