@@ -35,7 +35,7 @@ namespace colorNote
             return con;
         }
 
-        public static string ReadString(string txtQuery)
+        public string ReadString(string txtQuery)
         {
             using(SQLiteConnection con = GetConnection())
             using (SQLiteCommand cmd = new SQLiteCommand(txtQuery, con))

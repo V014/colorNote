@@ -93,7 +93,7 @@
             this.lbl_mood.ForeColor = System.Drawing.Color.White;
             this.lbl_mood.Location = new System.Drawing.Point(13, 15);
             this.lbl_mood.Name = "lbl_mood";
-            this.lbl_mood.Size = new System.Drawing.Size(50, 20);
+            this.lbl_mood.Size = new System.Drawing.Size(50, 19);
             this.lbl_mood.TabIndex = 45;
             this.lbl_mood.Text = "Mood";
             // 
@@ -180,10 +180,10 @@
             this.lbl_monthYear.AutoSize = true;
             this.lbl_monthYear.BackColor = System.Drawing.Color.Transparent;
             this.lbl_monthYear.Font = new System.Drawing.Font("Roboto", 12F);
-            this.lbl_monthYear.ForeColor = System.Drawing.Color.Gray;
+            this.lbl_monthYear.ForeColor = System.Drawing.Color.White;
             this.lbl_monthYear.Location = new System.Drawing.Point(8, 5);
             this.lbl_monthYear.Name = "lbl_monthYear";
-            this.lbl_monthYear.Size = new System.Drawing.Size(55, 20);
+            this.lbl_monthYear.Size = new System.Drawing.Size(55, 19);
             this.lbl_monthYear.TabIndex = 32;
             this.lbl_monthYear.Text = "Month";
             // 
@@ -292,7 +292,7 @@
             this.label7.ForeColor = System.Drawing.Color.White;
             this.label7.Location = new System.Drawing.Point(331, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(51, 14);
+            this.label7.Size = new System.Drawing.Size(51, 13);
             this.label7.TabIndex = 32;
             this.label7.Text = "Saturday";
             // 
@@ -304,7 +304,7 @@
             this.label6.ForeColor = System.Drawing.Color.White;
             this.label6.Location = new System.Drawing.Point(288, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(37, 14);
+            this.label6.Size = new System.Drawing.Size(37, 13);
             this.label6.TabIndex = 32;
             this.label6.Text = "Friday";
             // 
@@ -316,7 +316,7 @@
             this.label5.ForeColor = System.Drawing.Color.White;
             this.label5.Location = new System.Drawing.Point(229, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 14);
+            this.label5.Size = new System.Drawing.Size(53, 13);
             this.label5.TabIndex = 32;
             this.label5.Text = "Thursday";
             // 
@@ -328,7 +328,7 @@
             this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(162, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(64, 14);
+            this.label4.Size = new System.Drawing.Size(64, 13);
             this.label4.TabIndex = 32;
             this.label4.Text = "Wednesday";
             // 
@@ -340,7 +340,7 @@
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(107, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 14);
+            this.label3.Size = new System.Drawing.Size(48, 13);
             this.label3.TabIndex = 32;
             this.label3.Text = "Tuesday";
             // 
@@ -352,7 +352,7 @@
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(55, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 14);
+            this.label2.Size = new System.Drawing.Size(46, 13);
             this.label2.TabIndex = 32;
             this.label2.Text = "Monday";
             // 
@@ -364,7 +364,7 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(6, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 14);
+            this.label1.Size = new System.Drawing.Size(43, 13);
             this.label1.TabIndex = 32;
             this.label1.Text = "Sunday";
             // 

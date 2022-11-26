@@ -71,7 +71,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.Panel panel_color;
-        private System.Windows.Forms.Button button_day;
+        public System.Windows.Forms.Button button_day;
+        public System.Windows.Forms.Panel panel_color;
     }
 }

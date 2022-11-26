@@ -7,6 +7,7 @@ namespace colorNote
 {
     public partial class Home : MetroFramework.Forms.MetroForm
     {
+        Connection con = new Connection();
         // check current date and time
         private string currentDate = DateTime.Today.ToString("d");
         int month, year;
@@ -36,28 +37,28 @@ namespace colorNote
                     this.Style = MetroFramework.MetroColorStyle.Red;
                     datePicker.Style = MetroFramework.MetroColorStyle.Red;
                     lbl_monthYear.ForeColor = Color.Crimson;
-                    lbl_mood.ForeColor = Color.FromArgb(198, 40, 40);
+                    lbl_mood.ForeColor = Color.Crimson;
                     lbl_mood.Text = "Very Bad";
                     break;
                 case "Bad":
                     this.Style = MetroFramework.MetroColorStyle.Orange;
                     datePicker.Style = MetroFramework.MetroColorStyle.Orange;
-                    lbl_monthYear.ForeColor = Color.FromArgb(239, 108, 0);
-                    lbl_mood.ForeColor = Color.FromArgb(239, 108, 0);
+                    lbl_monthYear.ForeColor = Color.FromArgb(243, 119, 53);
+                    lbl_mood.ForeColor = Color.FromArgb(243, 119, 53);
                     lbl_mood.Text = "Bad";
                     break;
                 case "Ok":
                     this.Style = MetroFramework.MetroColorStyle.Yellow;
                     datePicker.Style = MetroFramework.MetroColorStyle.Yellow;
-                    lbl_monthYear.ForeColor = Color.FromArgb(249, 168, 37);
-                    lbl_mood.ForeColor = Color.FromArgb(249, 168, 37);
+                    lbl_monthYear.ForeColor = Color.FromArgb(255, 196, 37);
+                    lbl_mood.ForeColor = Color.FromArgb(255, 196, 37);
                     lbl_mood.Text = "Ok";
                     break;
                 case "Good":
                     this.Style = MetroFramework.MetroColorStyle.Green;
                     datePicker.Style = MetroFramework.MetroColorStyle.Green;
                     lbl_monthYear.ForeColor = Color.MediumSeaGreen;
-                    lbl_mood.ForeColor = Color.FromArgb(46, 125, 50);
+                    lbl_mood.ForeColor = Color.MediumSeaGreen;
                     lbl_mood.Text = "Good";
                     break;
                 case "Very Good":
@@ -71,7 +72,7 @@ namespace colorNote
                     this.Style = MetroFramework.MetroColorStyle.Silver;
                     datePicker.Style = MetroFramework.MetroColorStyle.Silver;
                     lbl_monthYear.ForeColor = Color.White;
-                    lbl_mood.ForeColor = Color.FromArgb(55, 71, 79);
+                    lbl_mood.ForeColor = Color.White;
                     lbl_mood.Text = "Default";
                     break;
             }
@@ -102,6 +103,10 @@ namespace colorNote
                 Days day = new Days();
                 day.days(i);
                 panel_day.Controls.Add(day);
+                if (checkMood() != "")
+                {
+                    day.panel_color.BackColor = Color.Crimson;
+                }
             }
         }
         // updates the session and returns nothing
@@ -114,16 +119,14 @@ namespace colorNote
         // pull the mood of the day
         private string checkMood()
         {
-            string cmd = $"SELECT Mood FROM Records WHERE date = '{currentDate}'";
-            string mood = Connection.ReadString(cmd);
+            string mood = con.ReadString($"SELECT Mood FROM Records WHERE date = '{currentDate}'");
             return mood;
         }
         // takes in the mood and date to record
         private void record(string mood, string selectedDate)
         {
             // check to see if the user has already recorded.
-            string checkSession = $"SELECT Mood FROM Records WHERE date = '{selectedDate}'";
-            string session = Connection.ReadString(checkSession);
+            string session = con.ReadString($"SELECT Mood FROM Records WHERE date = '{selectedDate}'");
             try
             {
                 if (session != "")
@@ -200,16 +203,22 @@ namespace colorNote
         // pulls data from that specific date
         private void datePicker_ValueChanged(object sender, EventArgs e)
         {
-            MessageBox.Show(datePicker.Text);
-            string cmd = $"SELECT Mood FROM Records WHERE Date = '{datePicker.Text}'";
-            string mood = Connection.ReadString(cmd);
-            if(mood == "")
+            string mood = con.ReadString($"SELECT Mood FROM Records WHERE Date = '{datePicker.Text}'");
+            if(mood != "")
             {
                 // set the style according to the mood
                 setStyle(mood);
             }
+            else
+            {
+                this.Style = MetroFramework.MetroColorStyle.Silver;
+                datePicker.Style = MetroFramework.MetroColorStyle.Silver;
+                lbl_monthYear.ForeColor = Color.White;
+                lbl_mood.ForeColor = Color.White;
+                lbl_mood.Text = "Default";
+            }
         }
-
+        // button back click
         private void button_back_Click(object sender, EventArgs e)
         {
             panel_day.Controls.Clear();
@@ -238,7 +247,7 @@ namespace colorNote
                 panel_day.Controls.Add(day);
             }
         }
-
+        // button next click
         private void button_next_Click(object sender, EventArgs e)
         {
             panel_day.Controls.Clear();

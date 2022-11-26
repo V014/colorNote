@@ -8,9 +8,8 @@ c:\users\wanga\documents\visual studio 2015\Projects\colorNote\colorNote\obj\Deb
 c:\users\wanga\documents\visual studio 2015\Projects\colorNote\colorNote\obj\Debug\colorNote.pdb
 C:\Users\Wanga\Documents\Visual Studio 2015\Projects\colorNote\colorNote\obj\Debug\colorNote.Home.resources
 C:\Users\Wanga\Documents\Visual Studio 2015\Projects\colorNote\colorNote\bin\Debug\System.Data.SQLite.dll
-C:\Users\Wanga\Documents\Visual Studio 2015\Projects\colorNote\colorNote\bin\Debug\System.Data.SQLite.xml
-C:\Users\Wanga\Documents\Visual Studio 2015\Projects\colorNote\colorNote\bin\Debug\Bunifu.UI.WinForms.BunifuDatePicker.dll
-C:\Users\Wanga\Documents\Visual Studio 2015\Projects\colorNote\colorNote\bin\Debug\Bunifu.UI.WinForms.BunifuDatePicker.xml
-C:\Users\Wanga\Documents\Visual Studio 2015\Projects\colorNote\colorNote\obj\Debug\colorNote.exe.licenses
-C:\Users\Wanga\Documents\Visual Studio 2015\Projects\colorNote\colorNote\bin\Debug\Bunifu.UI.WinForms.BunifuButton.dll
-C:\Users\Wanga\Documents\Visual Studio 2015\Projects\colorNote\colorNote\bin\Debug\Bunifu.UI.WinForms.BunifuButton.xml
+C:\Users\Wanga\Documents\Visual Studio 2015\Projects\colorNote\colorNote\bin\Debug\MetroFramework.Design.dll
+C:\Users\Wanga\Documents\Visual Studio 2015\Projects\colorNote\colorNote\bin\Debug\MetroFramework.dll
+C:\Users\Wanga\Documents\Visual Studio 2015\Projects\colorNote\colorNote\bin\Debug\MetroFramework.Fonts.dll
+C:\Users\Wanga\Documents\Visual Studio 2015\Projects\colorNote\colorNote\obj\Debug\colorNote.Blanks.resources
+C:\Users\Wanga\Documents\Visual Studio 2015\Projects\colorNote\colorNote\obj\Debug\colorNote.Days.resources
